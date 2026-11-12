@@ -1,17 +1,50 @@
-# riverpod
+# Provider in Riverpod | Flutter Riverpod State Management Tutorials
 
-A new Flutter project.
+A Flutter learning project exploring state management with Riverpod, starting with
+the `Provider` API. A provider exposes a value or service to the widget tree,
+and widgets can watch it and rebuild when its value changes.
 
-## Getting Started
+## Using a provider
 
-This project is a starting point for a Flutter application.
+Define a provider and read it from a `ConsumerWidget` with `ref.watch`:
 
-A few resources to get you started if this is your first Flutter project:
+```dart
+final greetingProvider = Provider<String>((ref) {
+  return 'Hello, Riverpod!';
+});
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+class Greeting extends ConsumerWidget {
+  const Greeting({super.key});
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final greeting = ref.watch(greetingProvider);
+    return Text(greeting);
+  }
+}
+```
+
+For widgets to access providers, add `ProviderScope` above the app:
+
+```dart
+void main() {
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
+}
+```
+
+## Run the project
+
+```sh
+flutter pub get
+flutter run
+```
+
+Run the tests with:
+
+```sh
+flutter test
+```
