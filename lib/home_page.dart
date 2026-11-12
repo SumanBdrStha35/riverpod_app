@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// Here we have learn how to use riverpod with provider and consumer widget.
+// we have created a provider that returns a string value. we can use this provider to read the value in any widget.
+// we have created a consumer widget that reads the value from the provider and displays it in the UI.
+// we have also created a consumer stateful widget that reads the value from the provider and displays it in the UI.
+// we have also created a consumer widget for stateless widget that reads the value from the provider and displays it in the UI.
+
 // to read value
 final helo = Provider<String>((ref) => "Hello, World!");
 final helo2 = Provider<int>((ref) => 42);
@@ -38,6 +44,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   }
 }
 
+// for statelesswidget
 // here we replace the stateless widget with a consumer widget to read the provider value
 // class MyHomePage extends ConsumerWidget {
 //   const MyHomePage({super.key, required this.title});
