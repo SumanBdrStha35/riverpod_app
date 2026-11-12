@@ -1,42 +1,24 @@
 # Provider in Riverpod | Flutter Riverpod State Management Tutorials
 
-A Flutter learning project exploring state management with Riverpod, starting with
-the `Provider` API. A provider exposes a value or service to the widget tree,
-and widgets can watch it and rebuild when its value changes.
+A small Flutter app demonstrating how to provide and read values with
+[Riverpod](https://riverpod.dev/). The home page watches a string provider and an
+integer provider, then displays both values.
 
-## Using a provider
+## How it works
 
-Define a provider and read it from a `ConsumerWidget` with `ref.watch`:
+- `main.dart` starts the app. `MyApp` wraps `MaterialApp` in `ProviderScope`,
+  making Riverpod providers available throughout the widget tree.
+- `home_page.dart` declares two providers:
 
-```dart
-final greetingProvider = Provider<String>((ref) {
-  return 'Hello, Riverpod!';
-});
+  ```dart
+  final helo = Provider<String>((ref) => "Hello, World!");
+  final helo2 = Provider<int>((ref) => 42);
+  ```
 
-class Greeting extends ConsumerWidget {
-  const Greeting({super.key});
+- `MyHomePage` is a `ConsumerWidget`. It reads the providers with `ref.watch`
+  and displays `Hello, World!` and `42` on the screen.
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final greeting = ref.watch(greetingProvider);
-    return Text(greeting);
-  }
-}
-```
-
-For widgets to access providers, add `ProviderScope` above the app:
-
-```dart
-void main() {
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
-  );
-}
-```
-
-## Run the project
+## Run the app
 
 ```sh
 flutter pub get
